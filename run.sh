@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+echo Started install...
+mvn clean install
+echo Completed maven
+echo Running...
+java -Xmx1024m -jar target/coursera-1.0-SNAPSHOT.jar
