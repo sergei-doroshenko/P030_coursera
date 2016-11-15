@@ -66,7 +66,45 @@ public class MaxPairwiseProductFixed {
         }
 
 //        System.out.println( getMaxPairwiseProduct( numbers ) );
-        System.out.println( getMaxPairwiseProductIndexes( numbers ) );
+        System.out.println( TestUtils.runWrapped( MaxPairwiseProductFixed::getMaxPairwiseProduct3, numbers  ) );
+        System.out.println( TestUtils.runWrapped( MaxPairwiseProductFixed::getMaxPairwiseProduct4, numbers  ) );
+    }
+
+    public static Object getMaxPairwiseProduct4( Object o ) {
+        int[] numbers = (int[]) o;
+        int maxIndex1 = -1, maxIndex2 = -1;
+        // Find max1 index
+        for ( int i = 0; i < numbers.length; ++i ) {
+            if ( maxIndex1 == -1 || numbers[ maxIndex1 ] < numbers[ i ] ) {
+                maxIndex1 = i;
+            }
+        }
+
+        // Find max2 index
+        for ( int i = 0; i < numbers.length; ++i ) {
+            // The same as for maxIndex1, just exclude maxIndex1 from comparison
+            if ( i != maxIndex1 && ( maxIndex2 == -1 || numbers[ maxIndex2 ] < numbers[ i ] ) ) {
+                maxIndex2 = i;
+            }
+        }
+
+        // Multiply max1 to max2
+        long result = ( long ) numbers[ maxIndex1 ] * ( long ) numbers[ maxIndex2 ];
+        return result;
+    }
+
+    public static Object getMaxPairwiseProduct3( Object o ) {
+        int[] numbers = (int[]) o;
+        long result = 0;
+        int n = numbers.length;
+        for ( int i = 0; i < n; ++i ) {
+            for ( int j = i + 1; j < n; ++j ) {
+                if ( (long) numbers[ i ] * (long) numbers[ j ] > result ) {
+                    result = (long) numbers[ i ] * (long) numbers[ j ];
+                }
+            }
+        }
+        return result;
     }
 
     static class FastScanner {
