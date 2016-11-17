@@ -12,3 +12,10 @@
 hs_err_pid*
 .idea/
 target/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+python/__pycache__/
+src/main/resources/
