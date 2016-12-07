@@ -30,6 +30,22 @@ def split(p_l, p_r, a):
     return a_l, a_r
 
 
+def binary_search_tup(arr, from_ind, to_ind, key):
+    lo = from_ind
+    hi = to_ind - 1
+
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        mid_key = arr[mid][0]
+        if mid_key < key:
+            lo = mid + 1
+        elif mid_key > key:
+            hi = mid - 1
+        else:
+            return mid
+    return -(lo + 1)
+
+
 def min_rec(x, y):
     if len(x) <= 3:
         return brute_force(x)
@@ -48,7 +64,12 @@ def min_rec(x, y):
     # for t in y:
     #     if t in xx:
     #         yy.append(t)
-    yy = list(filter(lambda z: z in xx, y))
+    # yy = list(filter(lambda z: z in xx, y))
+    yy = []
+    for el in y:
+        if binary_search_tup(xx, 0, len(xx), el[0]) >= 0:
+            yy.append(el)
+
     if len(yy) >= 2:
         yy_f = []
         i = 0

@@ -41,7 +41,7 @@ def min_dist_all(points):
     return min_dist
 
 
-def min_dot_product(a, b):
+def min_dot_product_4(a, b):
     points = list(map(lambda x, y: (x, y), a, b))
     # print(points)
     # x_sorted = sorted(points, key=lambda tup: tup[0])
@@ -52,11 +52,11 @@ def min_dot_product(a, b):
     # print(x_sorted)
     y_sorted = sorted(points, key=lambda tup: tup[1])
     # print(y_sorted)
-    res = min_rec(x_sorted, 0, len(x_sorted) - 1)
+    res = min_rec(x_sorted, 0, len(x_sorted) - 1, y_sorted)
     return res
 
 
-def min_rec(x_sorted, lo, hi):
+def min_rec(x_sorted, lo, hi, y_sorted):
     # print('calculate for: {}, lo:{}, hi:{}'.format(x_sorted[lo:hi+1], lo, hi))
     if hi - lo < 1:
         return None
@@ -69,8 +69,8 @@ def min_rec(x_sorted, lo, hi):
     # print('mid:{}, mid_point_x:{}'.format(mid, mid_point_x))
     x_mid = mid_point_x[0]
 
-    min_dist_left = min_rec(x_sorted, lo, mid)
-    min_dist_right = min_rec(x_sorted, mid + 1, hi)
+    min_dist_left = min_rec(x_sorted, lo, mid, y_sorted)
+    min_dist_right = min_rec(x_sorted, mid + 1, hi, y_sorted)
 
     if min_dist_left is None and min_dist_right is not None:
         min_dist = min_dist_right
@@ -85,7 +85,12 @@ def min_rec(x_sorted, lo, hi):
     x_temp = list(filter(lambda x: x_mid - min_dist < x[0] < x_mid + min_dist, x_sorted[lo:hi + 1]))
     # print('x_temp:{}'.format(x_temp))
     if len(x_temp) >= 2:
-        y_temp = sorted(x_temp, key=lambda tup: tup[1])
+        # here we sort by y
+        # y_temp = sorted(x_temp, key=lambda tup: tup[1])
+        y_temp = []
+        for ye in y_sorted:
+            if binary_search_tup(x_sorted, lo, hi, ye[0]) >= 0:
+                y_temp.append(ye)
         # print('y_temp:{}'.format(y_temp))
         y_temp_filtered = []
         i = 0
@@ -138,5 +143,5 @@ if __name__ == '__main__':
     # print(n)
     # print(a)
     # print(b)
-    print(min_dot_product(a, b))
+    print(min_dot_product_4(a, b))
     # print(min_dot_product_naive(a, b))

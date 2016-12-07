@@ -6,9 +6,10 @@ from python._1_intro.max_pairwise_product_fixed import get_max_pairwise
 
 from python._2_greedy.different_summands import optimal_summands_2, optimal_summands_rec
 from python._1_intro.max_pairwise_product import get_max_pairwise1
-from python._3_divide_and_conquer.dot_product import min_dot_product, min_dot_product_naive
+from python._3_divide_and_conquer.dot_product import min_dot_product, min_dot_product_naive, binary_search_tup
 from python._3_divide_and_conquer.dot_product_2 import min_dot_product_2
 from python._3_divide_and_conquer.dot_product_3 import min_dot_product_3
+from python._3_divide_and_conquer.dot_product_4 import min_dot_product_4
 from python._3_divide_and_conquer.sorting import randomized_quick_sort_3, randomized_quick_sort
 
 
@@ -111,12 +112,22 @@ def test_dot_product():
         # dist_quick = run_timed(min_dot_product, [a, b])
         dist_naive = run_timed(min_dot_product_naive, [a, b])
         # dist_2 = run_timed(min_dot_product_2, [a, b])
-        dist_3 = run_timed(min_dot_product_3, [a, b])
-        if dist_3 == dist_naive:
-            print('OK. Answer: {}, correct:{}'.format(dist_3, dist_naive))
+        # dist_3 = run_timed(min_dot_product_3, [a, b])
+        dist_4 = run_timed(min_dot_product_4, [a, b])
+        if dist_4 == dist_naive:
+            print('OK. Answer: {}, correct:{}'.format(dist_4, dist_naive))
         else:
-            print('Wrong answer: {}, correct:{}'.format(dist_3, dist_naive))
+            print('Wrong answer: {}, correct:{}'.format(dist_4, dist_naive))
             break
+
+
+def test_binary_search():
+    arr = [(0, 77), (1, 3), (2, 7), (4, 10), (15, 8)]
+    # arr = [(-5, 3), (2, 7), (4, 10)]
+    # arr = [(0, 7)]
+    key = 0
+    i = binary_search_tup(arr, 0, len(arr), key)
+    print('key: {}, i: {}, el: {}'.format(key, i, arr[i] if i >= 0 else None))
 
 
 def run_timed(func, args):
@@ -128,3 +139,4 @@ def run_timed(func, args):
 
 if __name__ == '__main__':
     test_dot_product()
+    # test_binary_search()
