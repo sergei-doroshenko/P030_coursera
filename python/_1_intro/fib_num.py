@@ -5,8 +5,8 @@
 """my test function"""
 import time
 
-
 # from __builtin__ import xrange
+from python.stress_test import run_timed
 
 
 def fib_rec(n):
@@ -36,15 +36,8 @@ def fib_var(n):
 
     return r
 
-
-start_time = time.time()
-print(fib_rec(40))
-print("--- %s seconds ---" % (time.time() - start_time))
-
-start_time = time.time()
-print(fib_arr(40))
-print("--- %s seconds ---" % (time.time() - start_time))
-
-start_time = time.time()
-print(fib_var(40))
-print("--- %s seconds ---" % (time.time() - start_time))
+n = 10
+print(run_timed(fib_rec, [n]))
+print(run_timed(fib_arr, [n]))
+print(run_timed(fib_var, [n]))
+print(run_timed(fib_var, [n]) % 10)
