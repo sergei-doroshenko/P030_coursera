@@ -1,5 +1,7 @@
 # Uses python3
+# Results: Good job! (Max time used: 0.43/7.50, max memory used: 13774848/536870912.)
 import sys
+
 
 def optimal_sequence(n):
     sequence = []
@@ -14,17 +16,28 @@ def optimal_sequence(n):
     return reversed(sequence)
 
 
-def dynamic_sequence(n):
+def create_table(n):
     table = [0, 1]
     for m in range(2, n + 1):
-        r = m - 1
-        for i in range(2):
-            if i == 0 and m % 2 == 0:
-                r = m // 2
-            elif i == 1 and m % 3 == 0:
-                r = m // 3
-        table.append(table[r] + 1)
+        k_min = table[m - 1]
+
+        if m % 2 == 0:
+            k_1 = table[m // 2]
+            if k_1 < k_min:
+                k_min = k_1
+
+        if m % 3 == 0:
+            k_2 = table[m // 3]
+            if k_2 < k_min:
+                k_min = k_2
+
+        table.append(k_min + 1)
     # print(table)
+    return table
+
+
+def dynamic_sequence(n):
+    table = create_table(n)
 
     idx = len(table) - 1
     sequence = [idx]
@@ -44,9 +57,10 @@ def dynamic_sequence(n):
 
     return reversed(sequence)
 
-# input = sys.stdin.read()
-# n = int(input)
-n = 96234
+
+input = sys.stdin.read()
+n = int(input)
+# n = 96234
 # sequence = list(optimal_sequence(n))
 # print(len(sequence) - 1)
 # for x in sequence:

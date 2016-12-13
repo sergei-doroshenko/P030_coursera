@@ -11,6 +11,7 @@ from python._3_divide_and_conquer.dot_product_2 import min_dot_product_2
 from python._3_divide_and_conquer.dot_product_3 import min_dot_product_3
 from python._3_divide_and_conquer.dot_product_4 import min_dot_product_4
 from python._3_divide_and_conquer.sorting import randomized_quick_sort_3, randomized_quick_sort
+from python._4_dynamic_programming.primitive_calculator import create_table
 
 
 def test_pair():
@@ -130,6 +131,15 @@ def test_binary_search():
     print('key: {}, i: {}, el: {}'.format(key, i, arr[i] if i >= 0 else None))
 
 
+def test_create_table():
+    table = create_table(5)
+    for i in range(len(table)):
+        print(i, end=' ')
+    print(" ")
+    print(table)
+
+
+
 def run_timed(func, args):
     start_time = time.time()
     r = func(*args)
@@ -138,5 +148,6 @@ def run_timed(func, args):
 
 
 if __name__ == '__main__':
-    test_dot_product()
+    # test_dot_product()
     # test_binary_search()
+    test_create_table()
