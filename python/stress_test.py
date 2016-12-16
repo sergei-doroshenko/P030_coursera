@@ -139,6 +139,9 @@ def test_create_table():
     print(table)
 
 
+def test_min():
+    print(min(1, 3, 2))
+
 
 def run_timed(func, args):
     start_time = time.time()
@@ -148,6 +151,4 @@ def run_timed(func, args):
 
 
 if __name__ == '__main__':
-    # test_dot_product()
-    # test_binary_search()
-    test_create_table()
+    test_min()
