@@ -1,4 +1,4 @@
-from python._3_divide_and_conquer.sorting import partition_3_ways
+from python._1_algorithmic_toolbox._3_divide_and_conquer.sorting import partition_3_ways
 
 
 def test_partition_3_ways():

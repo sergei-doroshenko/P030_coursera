@@ -1,8 +1,7 @@
 # Uses python3
 import math
-import sys
 
-from python._3_divide_and_conquer.dot_product import min_dot_product_naive
+from python._1_algorithmic_toolbox._3_divide_and_conquer import min_dot_product_naive
 
 
 def calc_dist(a, b):
