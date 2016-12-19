@@ -31,6 +31,7 @@ class TreeHeight:
         # self.parent = [-1, 0, 4, 0, 3]
         # self.n, self.parent = read_from_file()
 
+        # create array of arrays; each nested array represents labels (indexes) of children
         for i in range(self.n):
             self.nodes.append([])
 
@@ -39,7 +40,7 @@ class TreeHeight:
             if parent_index == -1:
                 self.root = self.nodes[j]
             else:
-                self.nodes[parent_index].append(j)
+                self.nodes[parent_index].append(j) # add child label (j) to parent array
 
     def compute_height(self):
         max_height = 0
