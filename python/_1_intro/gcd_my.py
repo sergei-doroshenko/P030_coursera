@@ -18,4 +18,4 @@ def euclid_gcd(a, b):
 
 
 # print(native_gcd(357, 234))
-print(euclid_gcd(28851538, 1183019))
+print(euclid_gcd(28851538, 1183019)) # 17657

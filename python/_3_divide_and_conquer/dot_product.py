@@ -138,5 +138,6 @@ if __name__ == '__main__':
     # print(n)
     # print(a)
     # print(b)
-    print(min_dot_product(a, b))
+    print(data)
+    # print(min_dot_product(a, b))
     # print(min_dot_product_naive(a, b))

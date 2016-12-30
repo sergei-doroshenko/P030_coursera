@@ -27,8 +27,8 @@ def is_greater_or_equal(a, b):
 
 
 if __name__ == '__main__':
-    input = sys.stdin.read()
-    data = input.split()
-    a = data[1:]
-    print(largest_number(a))
-    # print(largest_number([1, 112]))
+    # input = sys.stdin.read()
+    # data = input.split()
+    # a = data[1:]
+    # print(largest_number(a))
+    print(largest_number([1, 112]))

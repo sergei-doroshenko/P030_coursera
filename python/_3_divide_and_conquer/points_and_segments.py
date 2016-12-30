@@ -54,16 +54,20 @@ def naive_count_segments(starts, ends, points):
 
 
 if __name__ == '__main__':
-    input = sys.stdin.read()
-    data = list(map(int, input.split()))
-    n = data[0]
-    m = data[1]
-    starts = data[2:2 * n + 2:2]
-    ends = data[3:2 * n + 2:2]
-    points = data[2 * n + 2:]
+    # input = sys.stdin.read()
+    # data = list(map(int, input.split()))
+    # n = data[0]
+    # m = data[1]
+    # starts = data[2:2 * n + 2:2]
+    # ends = data[3:2 * n + 2:2]
+    # points = data[2 * n + 2:]
     # starts = [-9, 14, 32]
     # ends = [52, 97, 77]
     # points = [-9, -9, -9]
+
+    starts = [0, 7]
+    ends = [5, 10]
+    points = [1, 6, 11]
     # cnt = naive_count_segments(starts, ends, points)
     # for x in cnt:
     #     print(x, end=' ')
