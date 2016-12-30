@@ -33,9 +33,9 @@ def get_majority_element(a, left, right):
 
 
 if __name__ == '__main__':
-    input = sys.stdin.read()
-    n, *a = list(map(int, input.split()))
-    # n, *a = [5, 3, 2, 9, 2, 2]
+    # input = sys.stdin.read()
+    # n, *a = list(map(int, input.split()))
+    n, *a = [5, 3, 2, 9, 2, 2]
     # n, *a = [4, 1, 2, 3, 4]
     # n, *a = [4, 1, 2, 3, 1]
     # n, *a = [3, 7, 9, 9]

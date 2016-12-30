@@ -37,12 +37,12 @@ def optimal_points_2(segments2):
 
 
 if __name__ == '__main__':
-    input = sys.stdin.read()
-    n, *data = map(int, input.split())
+    # input = sys.stdin.read()
+    # n, *data = map(int, input.split())
     # n, *data = map(int, "0")
     # n, *data = map(int, "127")
     # n, *data = map(int, "3251336")
-    # n, *data = map(int, "447132556")
+    n, *data = map(int, "447132556")
     # n, *data = map(int, "6142523465624")
     # n, *data = map(int, "51425465624")
     segments = list(map(lambda x: Segment(x[0], x[1]), zip(data[::2], data[1::2])))

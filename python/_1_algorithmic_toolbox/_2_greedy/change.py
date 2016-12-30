@@ -15,5 +15,6 @@ def get_change(m):
 
 
 if __name__ == '__main__':
-    m = int(sys.stdin.read())
+    # m = int(sys.stdin.read())
+    m = 23
     print(get_change(m))
