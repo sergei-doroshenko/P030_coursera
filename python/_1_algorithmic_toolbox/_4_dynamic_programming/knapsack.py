@@ -30,7 +30,7 @@ def optimal_weight(W, n, w):
     :return: optimal value
     """
     matrix = init_matrix(W, n)
-    # print_matrix(matrix)
+    print_matrix(matrix)
     for i in range(0, n):
         for j in range(1, W + 1):
             matrix[i][j] = matrix[i - 1][j]
@@ -39,14 +39,14 @@ def optimal_weight(W, n, w):
                 val = matrix[i - 1][j - w[i]] + w[i]
                 if matrix[i][j] < val:
                     matrix[i][j] = val
-    # print_matrix(matrix)
+    print_matrix(matrix)
     result = matrix[n - 1][W]
     return result
 
 
 if __name__ == '__main__':
-    input = sys.stdin.read()
-    W, n, *w = list(map(int, input.split()))
-    # W, n, *w = [10, 3, 2, 4, 8]
+    # input = sys.stdin.read()
+    # W, n, *w = list(map(int, input.split()))
+    W, n, *w = [10, 3, 2, 4, 8]
     # W, n, *w = [10, 5, 3, 5, 3, 3, 5]
     print(optimal_weight(W, n, w))
