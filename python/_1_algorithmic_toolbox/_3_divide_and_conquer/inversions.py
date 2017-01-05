@@ -48,10 +48,10 @@ def merge(a, b, left, ave, right):
 
 
 if __name__ == '__main__':
-    input = sys.stdin.read()
-    n, *a = list(map(int, input.split()))
+    # input = sys.stdin.read()
+    # n, *a = list(map(int, input.split()))
     # n, *a = [5, 2, 3, 9, 2, 9]
-    # n, *a = [8, 3, 2, 9, 4, 1, 8, 2, 5]
+    n, *a = [8, 3, 2, 9, 4, 1, 8, 2, 5]
     b = n * [0]
     print(get_number_of_inversions(a, b, 0, len(a) - 1))
 

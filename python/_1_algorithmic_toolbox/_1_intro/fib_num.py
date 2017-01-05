@@ -35,9 +35,9 @@ def fib_var(n):
         i_1 = r
 
     return r
-
-n = 10
-print(run_timed(fib_rec, [n]))
-print(run_timed(fib_arr, [n]))
-print(run_timed(fib_var, [n]))
-print(run_timed(fib_var, [n]) % 10)
+if __name__ == '__main__':
+    n = 10
+    print(run_timed(fib_rec, [n]))
+    print(run_timed(fib_arr, [n]))
+    print(run_timed(fib_var, [n]))
+    # print(run_timed(fib_var, [n]) % 10)

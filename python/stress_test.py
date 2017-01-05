@@ -143,7 +143,7 @@ def test_min():
 def run_timed(func, args):
     start_time = time.time()
     r = func(*args)
-    print("--- %s seconds ---" % (time.time() - start_time))
+    print("\n--- %s seconds ---" % (time.time() - start_time))
     return r
 
 
