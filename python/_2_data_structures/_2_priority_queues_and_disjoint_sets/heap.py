@@ -57,7 +57,7 @@ class Heap:
 
     def shift_down(self, i):
         """
-        Shift element with specified index down in the heap. Can be called after get_max (not implemented)
+        Shift element with specified index down in the heap. Can be called after get_min
         and swap max element with the last leaf.
         :param i: index of shifted element
         """
@@ -70,28 +70,40 @@ class Heap:
         r = self.right_child(i)
         if r < self._size and self._data[r] < self._data[min_index]:
             min_index = r
-        # swap with left or right children
+        # swap with left or right children (specifically the minimum one)
         if i != min_index:
             self.swap(i, min_index)
             self.shift_down(min_index)  # call shift_down recursively
 
     def build_heap(self):
+        """
+        Builds a heap from shuffled array of numbers.
+        """
         for i in range(self._size // 2, -1, -1):  # starts from _size // 2 - specific for heaps!!!
             self.shift_down(i)
 
     def get_min(self):
+        """
+        Returns the minimum heap element, placed at the root node (vertex) of heap.
+        :return: the minimum element.
+        """
         if self._size <= 0:
             return None
-        result = self._data[0]
-        self._data[0] = self._data[self._size - 1]
-        self._size -= 1
-        self.shift_down(0)
+
+        result = self._data[0]  # places the root element in result
+        self._data[0] = self._data[self._size - 1]  # set the last element as the root element
+        self._size -= 1  # decrease heap size
+        self.shift_down(0)  # calls shift_down on the root element (internally recursively)
         return result
 
     def insert(self, p):
-        self._size += 1
-        self._data[self._size - 1] = p
-        self.shift_up(self._size - 1)
+        """
+        Inserts new element to the heap.
+        :param p: new element (number)
+        """
+        self._size += 1  # increases heap size by 1
+        self._data[self._size - 1] = p  # set new element as the last heap child leaf
+        self.shift_up(self._size - 1)  # calls shift_up on the last element until it places on the right place
 
     def write_response(self):
         print(self._data)

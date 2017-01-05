@@ -49,7 +49,7 @@ class JobQueue:
 
 class TupleHeap:
     def __init__(self, data):
-        self._data = data  # array of numbers for build a heap
+        self._data = data  # array of tuples for build a heap
         self._size = len(data)
         self.build_heap()
 
@@ -96,13 +96,6 @@ class TupleHeap:
             i = j
             j = self.parent(i)
 
-    def is_less(self, a, b):
-        if a[0] < b[0]:
-            return True
-        elif a[0] == b[0]:
-            return a[1] < b[1]
-        return False
-
     def shift_down(self, i):
         """
         Shift element with specified index down in the heap. Can be called after get_max (not implemented)
@@ -123,11 +116,31 @@ class TupleHeap:
             self.swap(i, min_index)
             self.shift_down(min_index)  # call shift_down recursively
 
+    def is_less(self, a, b):
+        """
+        Extremely important method, calls from shift_up and shift_down methods to figure out if tuple less or equals.
+        :param a: first tuple
+        :param b: second tuple
+        :return: True if tuple is less, otherwise - False
+        """
+        if a[0] < b[0]:  # compares time at first
+            return True
+        elif a[0] == b[0]:  # if time is equals, compare by priority
+            return a[1] < b[1]
+        return False
+
     def build_heap(self):
+        """
+        Builds a heap from shuffled array of numbers.
+        """
         for i in range(self._size // 2, -1, -1):  # starts from _size // 2 - specific for heaps!!!
             self.shift_down(i)
 
     def get_min(self):
+        """
+        Returns the minimum heap element, placed at the root node (vertex) of heap.
+        :return: the minimum element.
+        """
         if self._size <= 0:
             return None
         result = self._data[0]
@@ -137,6 +150,10 @@ class TupleHeap:
         return result
 
     def insert(self, p):
+        """
+        Inserts new element to the heap.
+        :param p: new element (number)
+        """
         self._size += 1
         self._data[self._size - 1] = p
         self.shift_up(self._size - 1)
