@@ -1,0 +1,9 @@
+Books:
+Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms (1st Edition). McGraw-Hill Higher Education. 2008.
+Gilles Brassard and Paul Bratley. Fundamentals of Algorithms. Prentice-Hall. 1996.
+Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms (3rd Edition). MIT Press and McGraw-Hill. 2009.
+
+Enroll:
+I'm currently have only part-time work and, because I have to rent an apartment, I'm very short of money. 
+I have an intention to work in bioinformatic and to help people be more healthy, so in my opinion this course will help me to achieve this aim.
+I'm going to take active part in classes and program assignment discussions, in order to help others to pass this course.
