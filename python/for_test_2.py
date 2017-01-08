@@ -31,5 +31,17 @@ def test_stack():
         print(s.pop())
 
 
+def test_arr():
+    contacts = [None] * 21
+    contacts[20] = "Hello"
+    print(contacts[20])
+
+def test_arr_2():
+    arr = [1, 2, 3]
+    arr.insert(0, 7)
+    print(arr)
+    print(arr.pop(0))
+    print(arr)
+
 if __name__ == '__main__':
-    test_stack()
+    test_arr_2()
