@@ -98,10 +98,10 @@ def find(root, key):
     return (next, root)
 
 
-def split(root, key):
-    (result, root) = find(root, key)
+def split(_root, key):
+    (result, new_root) = find(_root, key)
     if result is None:
-        return (root, None)
+        return new_root, None
     right = splay(result)
     left = right.left
     right.left = None
@@ -109,7 +109,7 @@ def split(root, key):
         left.parent = None
     update(left)
     update(right)
-    return (left, right)
+    return left, right
 
 
 def merge(left, right):
@@ -125,6 +125,18 @@ def merge(left, right):
     return right
 
 
+# Helpers
+# log_on = True
+
+
+log_on = False
+
+
+def log(message):
+    if log_on:
+        print(message)
+
+
 def in_order_traverse(r, result):
     if r is None:
         return
@@ -136,7 +148,22 @@ def in_order_traverse(r, result):
 def in_order(r):
     result = []
     in_order_traverse(r, result)
-    print(result)
+    log(result)
+
+
+def pre_order_traverse(r, result):
+    if r is None:
+        return
+    result.append(r.key)
+    pre_order_traverse(r.left, result)
+    pre_order_traverse(r.right, result)
+
+
+def pre_order(r):
+    result = []
+    pre_order_traverse(r, result)
+    log(result)
+
 
 # Code that uses splay tree to solve the problem
 
@@ -150,30 +177,48 @@ def insert(x):
     if right is None or right.key != x:
         new_vertex = Vertex(x, x, None, None, None)
     root = merge(merge(left, new_vertex), right)
-    # in_order(root)
+    # find(root, x)
+    # pre_order(root)
 
 
-def erase(x):
+def erase1(x):
     global root
     (next, new_root) = find(root, x)
+    log(next.key if next is not None else 'None')
+    root = new_root
     if next is not None and next.key == x:
         (left, right) = split(root, x)
         if left is not None and left.key == x:
             root = merge(merge(left.left, left.right), right)
         elif right is not None and right.key == x:
             root = merge(left, merge(right.left, right.right))
-    # in_order(root)
+    # pre_order(root)
+
+
+def erase(x):
+    global root
+    (next, new_root) = find(root, x)
+    log(next.key if next is not None else 'None')
+    root = new_root
+    if next is not None and next.key == x:
+        (left, right) = split(root, x)  # x is exactly in the right sub-tree and right.left is None
+        right = right.right
+        if right is not None:
+            right.parent = None
+        root = merge(left, right)
+    # pre_order(root)
 
 
 def search(x):
     global root
-    if root is not None and root.key == x:
-        return True
     (next, new_root) = find(root, x)
-    return next.key == x if next is not None else False
+    root = new_root
+    found = next.key == x if next is not None else False
+    # pre_order(root)
+    return found
 
 
-def sum(fr, to):
+def _sum(fr, to):
     global root
     if fr > to:
         fr, to = to, fr
@@ -183,26 +228,28 @@ def sum(fr, to):
     if middle is not None:
         ans += middle.sum
     root = merge(left, merge(middle, right))
+    # pre_order(root)
     return ans
 
 
-MODULO = 1000000001
-n = int(stdin.readline())
-last_sum_result = 0
-for i in range(n):
-    line = stdin.readline().split()
-    if line[0] == '+':
-        x = int(line[1])
-        insert((x + last_sum_result) % MODULO)
-    elif line[0] == '-':
-        x = int(line[1])
-        erase((x + last_sum_result) % MODULO)
-    elif line[0] == '?':
-        x = int(line[1])
-        print('Found' if search((x + last_sum_result) % MODULO) else 'Not found')
-    elif line[0] == 's':
-        l = int(line[1])
-        r = int(line[2])
-        res = sum((l + last_sum_result) % MODULO, (r + last_sum_result) % MODULO)
-        print(res)
-        last_sum_result = res % MODULO
+if __name__ == '__main__':
+    MODULO = 1000000001
+    n = int(stdin.readline())
+    last_sum_result = 0
+    for i in range(n):
+        line = stdin.readline().split()
+        if line[0] == '+':
+            x = int(line[1])
+            insert((x + last_sum_result) % MODULO)
+        elif line[0] == '-':
+            x = int(line[1])
+            erase((x + last_sum_result) % MODULO)
+        elif line[0] == '?':
+            x = int(line[1])
+            print('Found' if search((x + last_sum_result) % MODULO) else 'Not found')
+        elif line[0] == 's':
+            l = int(line[1])
+            r = int(line[2])
+            res = _sum((l + last_sum_result) % MODULO, (r + last_sum_result) % MODULO)
+            print(res)
+            last_sum_result = res % MODULO
