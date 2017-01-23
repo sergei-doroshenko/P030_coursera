@@ -150,19 +150,19 @@ def insert(x):
     if right is None or right.key != x:
         new_vertex = Vertex(x, x, None, None, None)
     root = merge(merge(left, new_vertex), right)
-    in_order(root)
+    # in_order(root)
 
 
 def erase(x):
     global root
     (next, new_root) = find(root, x)
-    if next.key == x:
+    if next is not None and next.key == x:
         (left, right) = split(root, x)
-        if left.key == x:
+        if left is not None and left.key == x:
             root = merge(merge(left.left, left.right), right)
-        elif right.key == x:
+        elif right is not None and right.key == x:
             root = merge(left, merge(right.left, right.right))
-    in_order(root)
+    # in_order(root)
 
 
 def search(x):
