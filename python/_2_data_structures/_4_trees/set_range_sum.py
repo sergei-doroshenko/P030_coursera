@@ -155,10 +155,13 @@ def insert(x):
 
 def erase(x):
     global root
-    # (next, new_root) = find(root, x)
-    (left, middle) = split(root, x)
-    (middle, right) = split(middle, x + 1)
-    root = merge(left, right)
+    (next, new_root) = find(root, x)
+    if next.key == x:
+        (left, right) = split(root, x)
+        if left.key == x:
+            root = merge(merge(left.left, left.right), right)
+        elif right.key == x:
+            root = merge(left, merge(right.left, right.right))
     in_order(root)
 
 
